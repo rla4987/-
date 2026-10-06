@@ -54,7 +54,7 @@ document.getElementById("lead").addEventListener("submit", async e => {
     msg.classList.add("err"); msg.textContent = "개인정보 수집·이용에 동의해 주세요."; return;
   }
   if (!LEAD_ENDPOINT) {
-    msg.classList.add("err"); msg.textContent = "현재 온라인 접수가 준비 중입니다. 전화(000-0000-0000)로 문의해 주세요."; return;
+    msg.classList.add("err"); msg.textContent = "현재 온라인 접수가 준비 중입니다. 전화(1600-2061)로 문의해 주세요."; return;
   }
   try {
     const r = await fetch(LEAD_ENDPOINT, {
