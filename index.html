@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOO법무사사무소 | 개인회생 전문 상담</title>
+<meta name="description" content="개인회생 서류 작성부터 절차 안내까지. 빚 문제, 혼자 고민하지 마시고 무료 상담으로 현재 상황부터 확인해 보세요.">
+<meta property="og:title" content="OOO법무사사무소 | 개인회생 전문 상담">
+<meta property="og:description" content="개인회생 서류 작성부터 절차 안내까지. 무료 상담으로 현재 상황부터 확인해 보세요.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap header-in">
+    <a href="#top" class="logo">OOO<span>법무사사무소</span></a>
+    <nav class="nav" id="nav">
+      <a href="#check">자가진단</a>
+      <a href="#process">진행절차</a>
+      <a href="#docs">필요서류</a>
+      <a href="#faq">자주 묻는 질문</a>
+      <a href="#contact">상담신청</a>
+    </nav>
+    <a href="tel:000-0000-0000" class="btn btn-sm">☎ 000-0000-0000</a>
+    <button class="menu" id="menu" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <p class="eyebrow">개인회생 전문 법무사사무소</p>
+    <h1>빚의 무게, 혼자 짊어지지 마세요.<br><em>상황에 맞는 길</em>을 함께 찾습니다.</h1>
+    <p class="lead">개인회생 신청 서류 작성부터 법원 절차 안내까지, 한 곳에서 꼼꼼하게 도와드립니다. 상담 내용은 비밀이 보장됩니다.</p>
+    <div class="cta">
+      <a href="#contact" class="btn btn-lg">무료 상담 신청</a>
+      <a href="#check" class="btn btn-lg btn-ghost">1분 자가진단</a>
+    </div>
+    <ul class="trust">
+      <li>비밀 보장 상담</li>
+      <li>채무 상황별 맞춤 안내</li>
+      <li>서류 준비 단계별 체크</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="wrap">
+    <h2>이런 분들께 개인회생이 도움이 될 수 있습니다</h2>
+    <div class="cards">
+      <div class="card"><b>월 상환액이 소득을 넘어요</b><p>이자와 원금 상환이 생활비를 압박해 다른 곳에서 돌려막고 있다면 상담이 필요한 시점입니다.</p></div>
+      <div class="card"><b>독촉·추심이 시작됐어요</b><p>절차가 개시되면 법원 결정에 따라 추심이 제한되는 효과가 있습니다. 시기와 요건은 상담에서 확인해 드립니다.</p></div>
+      <div class="card"><b>급여·재산 압류가 걱정돼요</b><p>압류 위기 단계에서도 선택 가능한 절차가 있는지 서류 기준으로 검토합니다.</p></div>
+      <div class="card"><b>정기적인 수입이 있어요</b><p>직장인, 자영업자, 프리랜서, 연금 수급자 등 소득 유형별로 준비 서류가 다릅니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="check">
+  <div class="wrap narrow">
+    <h2>간단 자가진단</h2>
+    <p class="sub">월 소득과 가족 수를 입력하면 대략적인 월 변제 가능 금액을 가늠해 볼 수 있습니다.</p>
+    <form class="box" id="calc">
+      <label>월 평균 소득 (세후, 원)
+        <input type="text" id="income" inputmode="numeric" placeholder="예: 2,800,000" required>
+      </label>
+      <label>부양가족 포함 가구원 수
+        <select id="family">
+          <option value="1">1인</option><option value="2">2인</option>
+          <option value="3">3인</option><option value="4">4인</option>
+          <option value="5">5인 이상</option>
+        </select>
+      </label>
+      <label>총 채무액 (원)
+        <input type="text" id="debt" inputmode="numeric" placeholder="예: 60,000,000" required>
+      </label>
+      <button class="btn btn-lg" type="submit">결과 보기</button>
+    </form>
+    <div class="result" id="result" hidden aria-live="polite"></div>
+    <p class="note">※ 참고용 간이 계산이며 실제 인가·변제액은 법원 심사, 재산 상태(청산가치), 채무 종류에 따라 달라집니다. 정확한 판단은 상담이 필요합니다.</p>
+  </div>
+</section>
+
+<section class="sec" id="process">
+  <div class="wrap">
+    <h2>진행 절차</h2>
+    <ol class="steps">
+      <li><b>상담</b><p>채무·소득·재산 현황을 확인하고 개인회생 적합 여부를 검토합니다.</p></li>
+      <li><b>서류 준비</b><p>필요 서류 목록을 안내드리고, 부족한 서류는 발급 방법까지 도와드립니다.</p></li>
+      <li><b>신청서 작성·접수</b><p>신청서, 채권자 목록, 재산목록, 수입 및 지출 목록, 변제계획안 등을 작성해 법원에 제출합니다.</p></li>
+      <li><b>개시 결정·보정</b><p>법원의 보정 권고가 있으면 안내에 따라 보완합니다.</p></li>
+      <li><b>변제 계획 인가</b><p>인가 후 정해진 기간 동안 변제를 이행하면 잔여 채무가 면책됩니다.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec alt" id="docs">
+  <div class="wrap narrow">
+    <h2>기본 준비 서류</h2>
+    <p class="sub">개인 상황에 따라 달라질 수 있으며, 상담 시 정확한 목록을 드립니다.</p>
+    <ul class="check">
+      <li>주민등록등·초본, 가족관계증명서</li>
+      <li>소득 증빙 (재직증명서, 급여명세서, 소득금액증명원 등)</li>
+      <li>채무 관련 자료 (부채증명서, 대출 계약서 등)</li>
+      <li>재산 관련 자료 (임대차계약서, 자동차등록원부, 보험·예금 내역 등)</li>
+      <li>최근 통장 거래내역</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap narrow">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>신용불량(연체) 기록이 남나요?</summary><p>개인회생 절차 진행 중에는 금융권 신용정보에 관련 정보가 등록될 수 있습니다. 구체적인 내용과 해제 시점은 상담에서 안내드립니다.</p></details>
+    <details><summary>직장에 알려지나요?</summary><p>원칙적으로 신청 사실이 직장에 통보되는 것은 아닙니다. 다만 급여 압류 등 별도 사정이 있으면 사전에 확인이 필요합니다.</p></details>
+    <details><summary>빚이 모두 없어지나요?</summary><p>변제계획에 따라 일정 기간 갚은 후 남은 채무가 면책되는 제도입니다. 채무 전액이 바로 탕감되는 것은 아니며, 면책되지 않는 채무도 있을 수 있습니다.</p></details>
+    <details><summary>법무사가 법원에 대신 출석해 주나요?</summary><p>법무사는 법원에 제출하는 서류의 작성과 제출 대행을 돕습니다. 심문 기일 등 본인 출석이 필요한 절차는 본인이 하되, 준비 사항을 안내드립니다.</p></details>
+    <details><summary>상담 비용이 있나요?</summary><p>최초 상담은 무료입니다. (※ 실제 운영 정책에 맞게 수정하세요.)</p></details>
+  </div>
+</section>
+
+<section class="sec alt" id="contact">
+  <div class="wrap narrow">
+    <h2>무료 상담 신청</h2>
+    <p class="sub">남겨주시면 영업시간 내 순차적으로 연락드립니다. 급하신 경우 전화로 문의해 주세요.</p>
+    <form class="box" id="lead" novalidate>
+      <label>성함<input name="name" required autocomplete="name"></label>
+      <label>연락처<input name="phone" type="tel" required placeholder="010-0000-0000" autocomplete="tel"></label>
+      <label>통화 가능 시간
+        <select name="time"><option>상관없음</option><option>오전 (9~12시)</option><option>오후 (12~18시)</option></select>
+      </label>
+      <label>상황을 간단히 알려주세요 (선택)<textarea name="memo" rows="4" placeholder="예: 채무 총액, 소득 형태 등. 주민번호·계좌번호는 적지 마세요."></textarea></label>
+      <label class="agree"><input type="checkbox" name="agree" required> [필수] 상담 목적의 개인정보(성명, 연락처, 상담내용) 수집·이용에 동의합니다. 보유기간: 상담 종료 후 1년.</label>
+      <button class="btn btn-lg" type="submit">상담 신청하기</button>
+      <p class="msg" id="msg" aria-live="polite"></p>
+    </form>
+    <dl class="info">
+      <div><dt>전화</dt><dd><a href="tel:000-0000-0000">000-0000-0000</a></dd></div>
+      <div><dt>영업시간</dt><dd>평일 09:00 ~ 18:00 (점심 12:00~13:00)</dd></div>
+      <div><dt>주소</dt><dd>OO시 OO구 OO로 00, 0층 (OO법원 인근)</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><b>OOO법무사사무소</b> · 대표법무사 OOO · 등록번호 제0000호 · 사업자등록번호 000-00-00000</p>
+    <p>OO시 OO구 OO로 00, 0층 · 전화 000-0000-0000 · 이메일 info@example.com</p>
+    <p class="small">본 사이트의 내용은 일반적인 정보 제공을 위한 것이며 결과를 보장하지 않습니다. 개인회생의 개시·인가 여부는 법원이 결정하며, 개별 사안은 상담을 통해 확인하셔야 합니다.</p>
+    <p class="small"><a href="#privacy">개인정보처리방침</a> (※ 별도 페이지 작성 필요)</p>
+  </div>
+</footer>
+
+<a href="tel:000-0000-0000" class="fab" aria-label="전화 상담">☎ 전화상담</a>
+<script src="script.js"></script>
+</body>
+</html>
