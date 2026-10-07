@@ -3,7 +3,7 @@
 const LIVING_COST = {1: 1538543, 2: 2519575, 3: 3215422, 4: 3896843, 5: 4547000};
 const MONTHS = 36; // 변제기간 (통상 36개월, 최대 60개월)
 // 상담 신청 접수 주소 (예: Formspree/Google Apps Script 웹앱 URL). 비어 있으면 접수되지 않습니다.
-const LEAD_ENDPOINT = "";
+const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyg8QVyxliJonTEf7ry2AQ0U8-Xc4hLk5pEC7MgbjHKzsrPQPY0c5ia-wbtzlY3SVDV/exec";
 // ==========================================
 
 const won = n => Math.round(n).toLocaleString("ko-KR") + "원";
