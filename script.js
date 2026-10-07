@@ -3,7 +3,7 @@
 const LIVING_COST = {1: 1538543, 2: 2519575, 3: 3215422, 4: 3896843, 5: 4547000};
 const MONTHS = 36; // 변제기간 (통상 36개월, 최대 60개월)
 // 상담 신청 접수 주소 (예: Formspree/Google Apps Script 웹앱 URL). 비어 있으면 접수되지 않습니다.
-const LEAD_ENDPOINT = "";
+const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyg8QVyxliJonTEf7ry2AQ0U8-Xc4hLk5pEC7MgbjHKzsrPQPY0c5ia-wbtzlY3SVDV/exec";
 // ==========================================
 
 const won = n => Math.round(n).toLocaleString("ko-KR") + "원";
@@ -58,10 +58,10 @@ document.getElementById("lead").addEventListener("submit", async e => {
   }
   try {
     const r = await fetch(LEAD_ENDPOINT, {
-      method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, // Apps Script는 CORS preflight 미지원 → simple request로 전송
       body: JSON.stringify({name: f.name.value.trim(), phone, time: f.time.value, memo: f.memo.value.trim()})
     });
-    if (!r.ok) throw new Error();
+    if (!r.ok || !(await r.json()).ok) throw new Error();
     msg.classList.add("ok"); msg.textContent = "신청이 접수되었습니다. 곧 연락드리겠습니다."; f.reset();
   } catch {
     msg.classList.add("err"); msg.textContent = "접수 중 오류가 발생했습니다. 전화로 문의해 주세요.";
