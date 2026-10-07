@@ -58,10 +58,10 @@ document.getElementById("lead").addEventListener("submit", async e => {
   }
   try {
     const r = await fetch(LEAD_ENDPOINT, {
-      method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, // Apps Script는 CORS preflight 미지원 → simple request로 전송
       body: JSON.stringify({name: f.name.value.trim(), phone, time: f.time.value, memo: f.memo.value.trim()})
     });
-    if (!r.ok) throw new Error();
+    if (!r.ok || !(await r.json()).ok) throw new Error();
     msg.classList.add("ok"); msg.textContent = "신청이 접수되었습니다. 곧 연락드리겠습니다."; f.reset();
   } catch {
     msg.classList.add("err"); msg.textContent = "접수 중 오류가 발생했습니다. 전화로 문의해 주세요.";
