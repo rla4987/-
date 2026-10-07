@@ -22,6 +22,7 @@ menu.addEventListener("click", () => {
 });
 nav.addEventListener("click", () => { nav.classList.remove("open"); menu.setAttribute("aria-expanded", false); });
 
+let lastDiagnosis = "";
 document.getElementById("calc").addEventListener("submit", e => {
   e.preventDefault();
   const income = num(document.getElementById("income").value);
@@ -40,6 +41,19 @@ document.getElementById("calc").addEventListener("submit", e => {
   }
   box.innerHTML = html + `<br><br><a class="btn" href="#contact">이 결과로 상담 신청하기</a>`;
   box.hidden = false;
+  lastDiagnosis = `[간단 자가진단 결과]\n월 소득 ${won(income)} / 가족 ${fam}인` +
+    (debt ? ` / 채무 ${won(debt)}` : "") + "\n" +
+    html.replace(/<br>\s*<br>/g, "\n").replace(/<br>/g, "\n").replace(/<[^>]+>/g, "");
+});
+
+// [이 결과로 상담 신청하기] 클릭 시 진단 결과를 상담 신청 메모에 자동 입력
+const DIAG_MARK = "[간단 자가진단 결과]";
+document.getElementById("result").addEventListener("click", e => {
+  if (!e.target.closest("a.btn") || !lastDiagnosis) return;
+  const memo = document.querySelector("#lead [name=memo]");
+  const cut = memo.value.indexOf("\n\n");
+  const mine = memo.value.indexOf(DIAG_MARK) === 0 ? (cut < 0 ? "" : memo.value.slice(cut + 2)) : memo.value;
+  memo.value = lastDiagnosis + (mine.trim() ? "\n\n" + mine.trim() : "");
 });
 
 document.getElementById("lead").addEventListener("submit", async e => {
