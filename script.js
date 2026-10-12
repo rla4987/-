@@ -81,3 +81,93 @@ document.getElementById("lead").addEventListener("submit", async e => {
     msg.classList.add("err"); msg.textContent = "접수 중 오류가 발생했습니다. 전화로 문의해 주세요.";
   }
 });
+
+// ===== 새소식&이야기 (글쓰기는 관리자 비밀번호 인증 후에만 가능, 검증은 Apps Script 서버에서 수행) =====
+const postList = document.getElementById("postList");
+const adminLogin = document.getElementById("adminLogin");
+const postForm = document.getElementById("postForm");
+let adminPw = "";
+try { adminPw = sessionStorage.getItem("adminPw") || ""; } catch {}
+
+const post = body => fetch(LEAD_ENDPOINT, {
+  method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(body)
+}).then(r => r.json());
+
+function setMsg(el, text, cls) { el.className = "msg " + (cls || ""); el.textContent = text; }
+
+function renderPosts(posts) {
+  postList.textContent = "";
+  if (!posts.length) { postList.innerHTML = '<p class="empty">아직 등록된 글이 없습니다.</p>'; return; }
+  posts.forEach(p => {
+    const a = document.createElement("article"); a.className = "post";
+    const h = document.createElement("h3"); h.textContent = p.title;
+    const t = document.createElement("time"); t.textContent = new Date(p.date).toLocaleDateString("ko-KR");
+    const b = document.createElement("p"); b.className = "post-body"; b.textContent = p.body;
+    a.append(h, t, b);
+    if (adminPw) {
+      const d = document.createElement("button");
+      d.type = "button"; d.className = "link-btn del"; d.textContent = "삭제";
+      d.addEventListener("click", async () => {
+        if (!confirm("이 글을 삭제할까요?")) return;
+        try {
+          const r = await post({action: "deletePost", password: adminPw, id: p.id});
+          if (!r.ok) throw new Error(r.error);
+          loadPosts();
+        } catch (err) { alert("삭제하지 못했습니다. 다시 로그인해 주세요."); adminOut(); }
+      });
+      a.append(d);
+    }
+    postList.append(a);
+  });
+}
+
+async function loadPosts() {
+  if (!LEAD_ENDPOINT) { postList.innerHTML = '<p class="empty">준비 중입니다.</p>'; return; }
+  try {
+    const r = await (await fetch(LEAD_ENDPOINT + "?action=posts")).json();
+    if (!r.ok || !Array.isArray(r.posts)) throw new Error();
+    renderPosts(r.posts);
+  } catch { postList.innerHTML = '<p class="empty">글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>'; }
+}
+
+function showAdmin() { postForm.hidden = !adminPw; adminLogin.hidden = true; }
+function adminOut() {
+  adminPw = ""; try { sessionStorage.removeItem("adminPw"); } catch {}
+  showAdmin(); loadPosts();
+}
+
+document.getElementById("adminBtn").addEventListener("click", () => {
+  if (adminPw) { postForm.hidden = !postForm.hidden; return; }
+  adminLogin.hidden = !adminLogin.hidden;
+  if (!adminLogin.hidden) document.getElementById("adminPw").focus();
+});
+
+adminLogin.addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = document.getElementById("adminMsg"), pw = document.getElementById("adminPw").value;
+  setMsg(msg, "확인 중…");
+  try {
+    const r = await post({action: "login", password: pw});
+    if (!r.ok) throw new Error(r.error);
+    adminPw = pw; try { sessionStorage.setItem("adminPw", pw); } catch {}
+    adminLogin.reset(); setMsg(msg, ""); showAdmin(); loadPosts();
+  } catch (err) {
+    setMsg(msg, err.message === "locked" ? "시도 횟수를 초과했습니다. 잠시 후 다시 시도해 주세요." : "비밀번호가 올바르지 않습니다.", "err");
+  }
+});
+
+postForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, msg = document.getElementById("postMsg");
+  setMsg(msg, "등록 중…");
+  try {
+    const r = await post({action: "createPost", password: adminPw, title: f.title.value.trim(), body: f.body.value.trim()});
+    if (!r.ok) throw new Error(r.error);
+    f.reset(); setMsg(msg, "등록되었습니다.", "ok"); loadPosts();
+  } catch (err) {
+    setMsg(msg, "등록하지 못했습니다. 로그아웃 후 다시 로그인해 주세요.", "err");
+  }
+});
+
+showAdmin();
+loadPosts();
