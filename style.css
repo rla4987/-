@@ -84,3 +84,16 @@ details p{margin:10px 0 0;color:var(--mute)}
   .sec{padding:52px 0}
   .fab-wrap{display:flex}
 }
+.news-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.link-btn{background:none;border:0;color:var(--mute);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px}
+.admin{margin:0 0 20px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-out{background:#fff;color:var(--navy);border:1px solid #b9c5d3}
+.btn-out:hover{background:var(--alt);color:var(--navy)}
+.post{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.post h3{margin:0;color:var(--navy);font-size:18px;line-height:1.4}
+.post time{display:block;font-size:13px;color:var(--mute);margin:2px 0 10px}
+.post-body{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.post .del{margin-top:12px;color:#c0392b}
+.empty{color:var(--mute)}
+[hidden]{display:none!important}
