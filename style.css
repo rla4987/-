@@ -80,7 +80,7 @@ details p{margin:10px 0 0;color:var(--mute)}
   .nav a{padding:14px 20px;border-top:1px solid var(--line)}
   .hero{padding:52px 0 40px}
   .hero-in{display:block}
-  .hero-in>.hero-photo{margin:4px 0 24px;max-width:340px}
+  .hero-in>.hero-photo{margin:4px 0 24px;max-width:240px}
   .sec{padding:52px 0}
   .fab-wrap{display:flex}
 }
