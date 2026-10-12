@@ -18,7 +18,7 @@ jobs:
       url: ${{ steps.d.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir _site && cp index.html style.css script.js _site/
+      - run: mkdir _site && cp -r index.html style.css script.js images _site/
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
       - id: d
